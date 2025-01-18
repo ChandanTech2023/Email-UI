@@ -54,10 +54,12 @@ function Sidebar() {
                 {
                     SidebarItems.map((item, index) => {
                         return (
-                            <div className='flex  items-center gap-3 pl-7 pr-8 py-1 rounded-r-full hover:cursor-pointer hover:bg-gray-200'>
+                            <div key={index} className='flex items-center gap-3 pl-7 pr-8 py-1 rounded-r-full hover:cursor-pointer hover:bg-gray-200'>
                                 {/* <RiInboxFill size={'20px'} /> */}
+                                <button key={index}>
                                 {item.icon}
                                 <p> {item.text}</p>
+                                </button>
                             </div>
 
                         )
