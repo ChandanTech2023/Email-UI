@@ -62,7 +62,7 @@ function Inbox() {
                             <button className='hover:rounded-full hover:bg-gray-200'>
                                 <MdKeyboardArrowLeft size={"24px"} />
                             </button>
-                            <button>
+                            <button className='hover:rounded-full hover:bg-gray-200'>
                                 <MdKeyboardArrowRight size={"24px"} />
                             </button>
                         </div>
