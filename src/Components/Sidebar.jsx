@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { FaPencilRuler } from 'react-icons/fa'
 
 import { LuPencil } from "react-icons/lu";
@@ -8,6 +8,7 @@ import { BiAlarmSnooze } from "react-icons/bi";
 import { IoMdSend } from "react-icons/io";
 import { RiDraftLine } from "react-icons/ri";
 import { TbSend2 } from 'react-icons/tb';
+import { useDispatch } from 'react-redux';
 
 
 // Create array of Object 
@@ -40,10 +41,16 @@ const SidebarItems = [
 ]
 
 function Sidebar() {
+    // Create Local State variable for Popup Menu
+    // const [open , setOpen] = useState(false);
+
+    const dispatch = useDispatch();
+ //Now we need to pass Sidebar data into SendMail component for Popup mail so here we use 'Redux' For state manage
     return (
         <div className='w-[15%]'>
             <div className='p-3'>
-                <button className='flex items-center gap-2 p-3 rounded-2xl hover:shadow-md bg-[#C2E7FF]'>
+                <button onClick={()=> dispatch(setOpen(true))}
+                 className='flex items-center gap-2 p-3 rounded-2xl hover:shadow-md bg-[#C2E7FF]'>
                     <LuPencil size={'22px'} />
                     Compose
                 </button>

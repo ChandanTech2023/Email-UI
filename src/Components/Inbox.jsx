@@ -7,6 +7,7 @@ import { MdInbox, MdKeyboardArrowLeft, MdKeyboardArrowRight, MdOutlineForum } fr
 import { FaCaretDown } from 'react-icons/fa';
 import { MdUpdate } from "react-icons/md";
 import Messages from './Messages';
+import SendMail from './SendMail';
 // import { MdCropSquare } from 'react-icons/md'
 
 const mailType = [
