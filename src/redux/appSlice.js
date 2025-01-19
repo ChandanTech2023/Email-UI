@@ -7,10 +7,10 @@ const appSlice = createSlice({
     },
     reducers:{
         // multiple Actions 
-        setsetOpen: (state , action)=>{
+        setOpen: (state , action)=>{
             state.open = action.payload;
         }
     }
 });
-export const {setsetOpen} = appSlice.actions;
+export let {setOpen} = appSlice.actions;
 export default appSlice.reducer;

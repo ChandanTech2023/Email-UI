@@ -1,14 +1,17 @@
 import React from 'react'
 import { RxCross2 } from "react-icons/rx";
 import { MdMinimize, MdOutlineCloseFullscreen } from "react-icons/md";
+import { useSelector } from 'react-redux';
+
 const SendMail = () => {
 
-  const open = true;
+  // const open = false;
+  const open = useSelector(store =>store.appSlice.open);
 
   return (
-    <div className={`${open ? "block" : 'hidden'}  bg-white max-w-6xl shadow-xl shadow-slate-500 rounded-t-md`}>
+    <div className={`${open ? 'block' : 'hidden'}  bg-white max-w-5xl shadow-xl shadow-slate-500 rounded-t-md`}>
         <div className='flex p-2 bg-[#F2F6Fc] justify-between rounded-t-md'>
-            <h1>New Message </h1>
+            <h1>New Message </h1> 
             <div className='p-2 rounded-full hover:bg-gray-300 cursor-pointer flex items-center justify-center gap-3'>
                 <MdMinimize size={"10px"}/>
                 <MdOutlineCloseFullscreen size={"10px"}/>

@@ -9,6 +9,7 @@ import { IoMdSend } from "react-icons/io";
 import { RiDraftLine } from "react-icons/ri";
 import { TbSend2 } from 'react-icons/tb';
 import { useDispatch } from 'react-redux';
+import { setOpen } from '../redux/appSlice';
 
 
 // Create array of Object 
