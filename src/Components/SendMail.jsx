@@ -4,6 +4,8 @@ import { MdMinimize, MdOutlineCloseFullscreen } from "react-icons/md";
 import { useDispatch, useSelector } from 'react-redux';
 import { setOpen } from '../redux/appSlice';
 import { FaCaretDown } from 'react-icons/fa';
+import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
+import { db } from '../firebase';
 
 const SendMail = () => {
   // Getting Mail data for sending Email
@@ -16,9 +18,24 @@ const SendMail = () => {
     // initial form data fill using spread operator then assign value 
     setFormData({ ...formData, [event.target.name]: event.target.value })
   }
-  const submitHandler = (e) => {
+
+  // Send email data into Firebase database 
+  const submitHandler = async (e) => {
     e.preventDefault();
-    console.log(formData);
+    // console.log(formData);
+    await addDoc(collection(db, 'emails'), {
+      to: formData.to, subject: formData.subject,
+      message: formData.message,
+      createdAtTime: serverTimestamp(), //Record created email time stemp
+    })
+    // Now close our Mode 
+    dispatch(setOpen(false));
+    setFormData({
+      to: "",
+      subject: "",
+      message: ""
+
+    })
   }
 
   // const open = false;
@@ -44,9 +61,9 @@ const SendMail = () => {
         <textarea onChange={changeHendler} value={formData.message}
           name="message" cols={"30"} rows={"10"} className='outline-none py-2'></textarea>
         <div className='rounded-r-3xl'>
-        <button onClick={() => dispatch(setOpen(false))} type='submit'
-          className='rounded-full w-fit px-4 text-white font-medium bg-[#0B57D0] flex items-center gap-1'>Send
-          <FaCaretDown/></button>
+          <button type='submit'
+            className='rounded-full w-fit px-4 text-white font-medium bg-[#0B57D0] flex items-center gap-1'>Send
+            <FaCaretDown /></button>
         </div>
 
       </form>
