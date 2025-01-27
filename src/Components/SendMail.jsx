@@ -14,6 +14,11 @@ const SendMail = () => {
     subject: "",
     message: ""
   })
+
+  // const open = false;
+  const open = useSelector(store => store.appSlice.open); // We use useSelector for taking open variable access 
+  const dispatch = useDispatch();
+
   const changeHendler = (event) => {
     // initial form data fill using spread operator then assign value 
     setFormData({ ...formData, [event.target.name]: event.target.value })
@@ -22,12 +27,14 @@ const SendMail = () => {
   // Send email data into Firebase database 
   const submitHandler = async (e) => {
     e.preventDefault();
-    // console.log(formData);
-    await addDoc(collection(db, 'emails'), {
-      to: formData.to, subject: formData.subject,
+    console.log(formData);
+    await addDoc(collection(db, 'emails') ,{
+      to: formData.to, 
+      subject: formData.subject,
       message: formData.message,
-      createdAtTime: serverTimestamp(), //Record created email time stemp
+      createdAt: serverTimestamp(), //Record created email time stamp
     })
+
     // Now close our Mode 
     dispatch(setOpen(false));
     setFormData({
@@ -37,10 +44,6 @@ const SendMail = () => {
 
     })
   }
-
-  // const open = false;
-  const open = useSelector(store => store.appSlice.open); // We use useSelector for taking open variable access 
-  const dispatch = useDispatch();
 
   return (
     <div className={`${open ? 'block' : 'hidden'}  bg-white max-w-5xl shadow-xl shadow-slate-500 rounded-t-md`}>

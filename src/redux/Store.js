@@ -5,7 +5,7 @@ import appReducer from "./appSlice"
 const store = configureStore({
     //Create reducer Object
     reducer:{
-        appSlice :appReducer
+        appSlice :appReducer,
 
     }
 });
