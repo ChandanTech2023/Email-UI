@@ -1,13 +1,22 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { GiHamburgerMenu } from "react-icons/gi";
 import { FaSearch } from "react-icons/fa";
 import { CiCircleQuestion } from "react-icons/ci";
 import { IoSettingsSharp } from "react-icons/io5";
 import { TbGridDots } from "react-icons/tb";
 import Avatar from 'react-avatar';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { setSeacrhText } from '../redux/appSlice';
 
 
 function Navbar() {
+    const [ searchMail , setSearchMail] = useState("");
+    const dispatch = useDispatch();
+    useEffect(()=>{
+        dispatch(setSeacrhText(searchMail));
+
+    },[searchMail])
     return (
         <div className='flex items-center justify-between mx-3 h-16'>
             <div className='flex items-center gap-10'>
@@ -20,11 +29,14 @@ function Navbar() {
                 </div>
             </div>
             <div className='md:block hidden w-[50%] mr-8 '>
-                <div className='flex items-center bg-[#EAF1FB] px-3 py-2 rounded-full'>
+                <div className='flex items-center gap-2 bg-[#EAF1FB] px-3 py-2 rounded-full'>
                     <FaSearch size={'22px'} className='text-gray-600 ' />
                     <input
                         type="text"
-                        placeholder='search email'
+                        //Taking Input email for search
+                        value={searchMail}
+                        onChange={(e)=> setSearchMail(e.target.value)}
+                        placeholder='Search email'
                         className='rounded-full w-full bg-transparent outline-none px-1 ' />
 
                 </div>

@@ -7,18 +7,19 @@ import { FaRegSmile } from 'react-icons/fa';
 import { PiArrowArcLeft } from "react-icons/pi";
 import { useNavigate, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import {  deleteDoc, doc } from 'firebase/firestore';
+import { deleteDoc, doc } from 'firebase/firestore';
 import { db } from '../firebase';
+import { motion } from 'framer-motion';
 
 function Mail() {
   const navigate = useNavigate();
   const selectedEmail = useSelector(store => store.appSlice.selectedEmail);
   const params = useParams(); // Fetch email ID 
   console.log(params);
-  
+
 
   // Function for Delete message
-  const deletmailById = async(id) => {
+  const deletmailById = async (id) => {
     try {
       await deleteDoc(doc(db, "emails", id));
       navigate("/");
@@ -29,7 +30,12 @@ function Mail() {
   }
 
   return (
-    <div className='flex-1 bg-white rounded-xl mx-5'>
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5 }}
+
+      className='flex-1 bg-white rounded-xl mx-5'>
       <div className='flex items-center justify-between px-4'>
         <div className='flex items-center gap-2 text-gray-700 py-2'>
           <div onClick={() => navigate("/")}
@@ -110,7 +116,7 @@ function Mail() {
         </div>
 
       </div>
-    </div>
+    </motion.div>
   )
 }
 

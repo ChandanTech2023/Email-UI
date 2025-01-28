@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import SingleMessage from './SingleMessage'
 import { collection, doc, onSnapshot, orderBy, query } from 'firebase/firestore'
 import { db } from '../firebase'
@@ -8,9 +8,13 @@ import { setEmails } from '../redux/appSlice'
 function Messages() {
 
   const dispatch = useDispatch();
+  const { emails } = useSelector(store => store.appSlice) //Other way destructor Email obj
+  // Create copy of original email for searching
+  const [tempEmails , setTempEmails] = useState(emails);
+
   // Display our Email Timestamp
   // const emails = useSelector(store => store.appSlice.emails) // One way
-  const { emails } = useSelector(store => store.appSlice) //Other way destructor Email obj
+  const {searchText} = useSelector(store => store.appSlice)
 
   //Fetch Email data from Firebase database for Display on UI
   useEffect(() => {
@@ -27,14 +31,21 @@ function Messages() {
 
     // Cleanup for removing unnecessary timer from other page 
     return () => unsubscribe();
+  }, []);
 
-  }, [dispatch]);
+  useEffect(()=>{
+    const filteredEmail = emails?.filter((email) =>{
+      return email?.subject?.toLowerCase().includes(searchText.toLowerCase()) || email?.to?.toLowerCase().includes(searchText.toLowerCase()) ||emails?.message?.toLowerCase().includes(searchText.toLowerCase())
+    })
+    setTempEmails(filteredEmail)
+  },[searchText , emails])
 
   return (
     <div >
       {
         //Pass email as a props in singleMessage
-        Array.isArray(emails) && emails.map((email) => <SingleMessage key={email.id} email={email} />)
+        // Array.isArray(emails) && emails.map((email) => <SingleMessage key={email.id} email={email} />)
+        Array.isArray(tempEmails) && tempEmails.map((email) => <SingleMessage key={email.id} email={email} />)
       }
 
     </div>

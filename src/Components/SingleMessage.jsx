@@ -4,6 +4,7 @@ import { CiStar } from "react-icons/ci";
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux';
 import { setSelectedEmail } from '../redux/appSlice';
+import {motion} from 'framer-motion'
 
 
 const SingleMessage = ({ email }) => {
@@ -18,7 +19,11 @@ const SingleMessage = ({ email }) => {
 
 
     return (
-        <div onClick={openMail} className='flex items-center  border-b border-gray-200 px-4 py-3 text-sm hover:cursor-pointer hover: shadow-sm flex-nowrap'>
+        <motion.div
+        initial = {{opacity:0 ,y :-20}}
+        animate = {{opacity:1, y:0}}
+        transition={{duration:0.5}}
+         onClick={openMail} className='flex items-center  border-b border-gray-200 px-4 py-3 text-sm hover:cursor-pointer hover: shadow-sm flex-nowrap'>
             <div className='flex items-center gap-2'>
                 <div className='flex-none  text-gray-400'>
                     <MdCropSquare size={"20px"} className='w-5 h-8' />
@@ -47,7 +52,7 @@ const SingleMessage = ({ email }) => {
                     
                 </p>
             </div>
-        </div>
+        </motion.div>
     )
 }
 
