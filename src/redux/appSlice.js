@@ -16,7 +16,7 @@ const appSlice = createSlice({
         state.emails = action.payload;
        },
        setSelectedEmail:(state, action)=>{
-        state.emails = action.payload;
+        state.selectedEmail = action.payload;
        }
     }
 });
