@@ -37,6 +37,9 @@ const SingleMessage = ({ email }) => {
                     <MdLabelImportantOutline size={"20px"} className='w-5 h-8' />
 
                 </div>
+                <div className='font-semibold'>
+                    {email?.to}
+                </div>
             </div>
 
             <div className='flex-1 justify-start content-center ml-6 overflow-y-auto   '>

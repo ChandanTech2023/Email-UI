@@ -6,17 +6,31 @@ import { IoSettingsSharp } from "react-icons/io5";
 import { TbGridDots } from "react-icons/tb";
 import Avatar from 'react-avatar';
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { setSeacrhText } from '../redux/appSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { setSeacrhText, setUser } from '../redux/appSlice';
+import { AnimatePresence, motion } from 'framer-motion';
+import { signOut } from 'firebase/auth';
+import { auth } from '../firebase';
 
 
 function Navbar() {
-    const [ searchMail , setSearchMail] = useState("");
+    const [searchMail, setSearchMail] = useState("");
+    const [toggle, setToogle] = useState(false)
     const dispatch = useDispatch();
-    useEffect(()=>{
-        dispatch(setSeacrhText(searchMail));
+    const {user} = useSelector(store => store.appSlice)
 
-    },[searchMail])
+    const signOutHandler = ()=>{
+        signOut(auth).then(()=>{
+            dispatch(setUser(null))
+        }).catch((error)=> console.log(error));
+        
+    }
+
+    useEffect(() => {
+        dispatch(setSeacrhText(searchMail));
+        // dispatch(setToogle(toggle));
+
+    }, [searchMail])
     return (
         <div className='flex items-center justify-between mx-3 h-16'>
             <div className='flex items-center gap-10'>
@@ -35,7 +49,7 @@ function Navbar() {
                         type="text"
                         //Taking Input email for search
                         value={searchMail}
-                        onChange={(e)=> setSearchMail(e.target.value)}
+                        onChange={(e) => setSearchMail(e.target.value)}
                         placeholder='Search email'
                         className='rounded-full w-full bg-transparent outline-none px-1 ' />
 
@@ -52,13 +66,28 @@ function Navbar() {
                     <div className='p-3 rounded-full hover:bg-gray-100 cursor-pointer'>
                         <TbGridDots size={'20px'} />
                     </div>
-                    <div className='cursor-pointer'>
-                       <Avatar src='' size='20px' round={true}/>
+                    <div className='relative cursor-pointer'>
+                        <Avatar onClick={()=>setToogle(!toggle)} src={user?.photoUrl} size='30px' round={true} />
+                        <AnimatePresence>
+                            {
+                                toggle && (<motion.div
+                                    initial={{ opacity: 0, scale: 0.7 }}
+                                    animate={{ opacity: 1, scale: 1 }}
+                                    exit={{ opacity: 0, scale: 0.7 }}
+                                    transition={{ duration: 0.1 }}
+                                    className='absolute right-1 z-20 bg-white shadow-lg rounded-md'
+                                >
+                                    <p onClick={signOutHandler} className='p-2 underline'>LogOut</p>
+
+                                </motion.div>
+                                )
+                            }
+                        </AnimatePresence>
                     </div>
 
                 </div>
             </div>
-       
+
 
         </div>
     )

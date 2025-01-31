@@ -5,6 +5,8 @@ import Mail from './Components/Mail'
 import Body from './Components/Body'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import SendMail from './Components/SendMail'
+import Login from './Components/Login'
+import { useSelector } from 'react-redux'
 
 //Creating router 
 const router = createBrowserRouter([
@@ -15,28 +17,37 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Inbox/>
+        element: <Inbox />
       },
       {
         path: "/mail/:id",
-        element : <Mail/>
-        
+        element: <Mail />
+
       }
     ]
   }
 ])
 
 function App() {
+  // const user = false;
+  const {user} = useSelector(store=> store.appSlice)
   return (
     <div className='bg-[#F6F8FC] h-screen w-screen overflow-hidden'>
-      <Navbar />
-      {/* Providing created Router  */}
-      <RouterProvider router={router}/>
-      
-      <div className='absolute w-[30%] bottom-0 right-20 z-10'>
-        <SendMail/>
-      </div>
+      {
+        !user ? (
+          <Login />
+        ) : (
+          <>
+            <Navbar />
+            {/* Providing created Router  */}
+            <RouterProvider router={router} />
 
+            <div className='absolute w-[30%] bottom-0 right-20 z-10'>
+              <SendMail />
+            </div>
+          </>
+        )
+      }
     </div>
   )
 }

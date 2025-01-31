@@ -4,6 +4,7 @@ import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import {getAuth ,GoogleAuthProvider} from 'firebase/auth'
 import {getFirestore} from 'firebase/firestore'
+import { TbBrandGoogleAnalytics } from "react-icons/tb";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -26,5 +27,5 @@ const analytics = getAnalytics(app);
 //Now , we use Authentication and Database 
 export const auth = getAuth();
 export const db = getFirestore(app);
-export const dprovider = new GoogleAuthProvider() ; // We use login with Google
+export const provider = new GoogleAuthProvider() ; // We use login with Google
 
