@@ -1,8 +1,41 @@
 # React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# 📧 Email-UI
 
-Currently, two official plugins are available:
+A fully functional Gmail app built using **React.js, Redux, Tailwind CSS, Firebase Authentication**. This project replicates core email functionalities offering a smooth and modern user experience.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ✨ Features
+
+- **User Authentication** 🔐 – Secure login and signup with Google Firebase Authentication.  
+- **Redux State Management** ⚡ – Efficient handling of email data, UI state, and authentication.
+- **Email Management** 📩 – Compose, send, receive, and delete emails seamlessly. 
+- **Smooth Animations with Framer Motion** 🚀 – Enhanced user experience with fluid transitions.  
+- **Real-time Updates** 🔄 – Instant email data synchronization using Firebase Firestore.  
+
+## 🛠️ Tech Stack
+
+- **Frontend**: React.js, Redux, Tailwind CSS, Framer Motion  
+- **Backend**: Firebase Firestore  
+- **Authentication**: Firebase Authentication  
+- **State Management**: Redux Toolkit  
+
+## 🚀 Installation & Setup
+
+1. Clone the repository:
+   ```sh
+   git clone https://github.com/ChandanTech2023/Email-UI/
+   cd /Email-UI
+   ```
+2. Install dependencies:
+   ```sh
+   npm install
+   ```
+3. Start the development server:
+   ```sh
+   npm run dev
+   ```
+
+## 📷 Screenshots
+
+
+
