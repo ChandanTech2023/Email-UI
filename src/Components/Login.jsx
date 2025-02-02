@@ -25,6 +25,10 @@ function Login() {
   return (
     <div className='w-screen h-screen flex justify-center items-center '>
         <div className='p-3 bg-white flex flex-col gap-3 rounded-md '>
+          <div className='flex justify-center items-center flex-col '>
+          <h1 className='text-xl font-[400]' >Welcome </h1>
+          <p className='text-xs text-blue-500'>We are happy to have you back !</p>
+          </div>
     
             <GoogleButton type='dark' onClick={ SignInwithGoogle }/>
 
