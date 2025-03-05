@@ -11,7 +11,7 @@ import { TbBrandGoogleAnalytics } from "react-icons/tb";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyBUpR94vhjEpjIeMHsgtTRdo0iM3RBzKf8",
+  apiKey: "",
   authDomain: "email-ui-44e72.firebaseapp.com",
   projectId: "email-ui-44e72",
   storageBucket: "email-ui-44e72.firebasestorage.app",
